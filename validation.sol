@@ -25,7 +25,7 @@ contract TokenValidation {
 
 // Contract Functions ___________________________________________________________________________________________________
 
-    // mint function that owner could only access
+    // modifiers that determine whether the external functions could proceed
     modifier onlyOwner() {
         require(msg.sender == owner, "Only contract owner can call this function");
         _;
@@ -38,6 +38,7 @@ contract TokenValidation {
         _;
     }
 
+    // mint function
     function mint(address ledgerAddress, uint amount) external onlyOwner {
         TknSupply += amount;
         ledger[ledgerAddress] += amount;
